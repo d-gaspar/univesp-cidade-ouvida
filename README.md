@@ -1,7 +1,7 @@
 # install server dependencies
 ```sh
 $ cd server
-$ npm install express body-parser mysql nodemon
+$ npm install express body-parser mysql nodemon cors
 ```
 
 # run server
@@ -17,3 +17,10 @@ $ npm run devStart
 
 # open server url
 > http://localhost:3001/
+
+
+# install axios on client
+```sh
+$ cd client
+$ npm i axios
+```

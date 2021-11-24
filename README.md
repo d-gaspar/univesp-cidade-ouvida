@@ -1,7 +1,7 @@
 # install server dependencies
 ```sh
 $ cd server
-$ npm install express body-parser mysql nodemon cors
+$ npm install express body-parser mysql nodemon cors react-select
 ```
 
 # run server
@@ -23,4 +23,17 @@ $ npm run devStart
 ```sh
 $ cd client
 $ npm i axios
+```
+
+# install yarn
+```sh
+$ node -v # dependency
+$ sudo npm install -g yarn
+$ yarn --version
+```
+
+# install react-select
+```sh
+$ cd client
+$ npm install --save react-select
 ```

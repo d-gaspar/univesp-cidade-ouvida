@@ -19,6 +19,57 @@ const db = mysql.createPool({
     res.send("hello world")
 }); */
 
+/* get complaint registered */
+app.get('/api/registers', (req, res) => {
+    const cityID = req.query.cityID
+    const neighborhoodQuery = '%' + req.query.neighborhoodQuery + '%'
+
+    console.log('data received from client: ' + cityID + ' ' + neighborhoodQuery);
+
+    if (req.query.neighborhoodQuery.length > 0) {
+        console.log('AAAAAAAAAAAAAAAA')
+        const sqlSelect = `
+            SELECT
+                complaint_register.neighborhood AS neighborhood,
+                complaints.description AS name,
+                COUNT(complaint_register.complaint_id) AS value
+            FROM
+                brazil_cities, complaint_register, complaints
+            WHERE
+                complaint_register.city_id = brazil_cities.id_cidade AND 
+                complaint_register.complaint_id = complaints.id_complaint AND
+                brazil_cities.id_cidade = ? AND
+                neighborhood LIKE ?
+            GROUP BY
+                complaint_register.neighborhood, complaint_register.complaint_id
+        `
+        db.query(sqlSelect, [cityID, neighborhoodQuery], (err, result) => {
+            res.send(result);
+        })
+    } else {
+        console.log('BBBBBBBBBBBBBBBBB')
+        const sqlSelect = `
+        SELECT
+            "Todos" AS neighborhood,
+            complaints.description AS name,
+            COUNT(complaint_register.complaint_id) AS value
+        FROM
+            brazil_cities, complaint_register, complaints
+        WHERE
+            complaint_register.city_id = brazil_cities.id_cidade AND 
+            complaint_register.complaint_id = complaints.id_complaint AND
+            brazil_cities.id_cidade = ?
+        GROUP BY
+            name, complaint_register.complaint_id
+        `
+        db.query(sqlSelect, [cityID], (err, result) => {
+            res.send(result);
+        })
+    }
+
+
+})
+
 /* get complaint list */
 app.get('/api/complaint', (req, res) => {
     const sqlSelect = 'SELECT * FROM complaints';

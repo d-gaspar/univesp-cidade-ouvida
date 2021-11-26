@@ -18,6 +18,7 @@ $ npm run devStart
 # open server url
 > http://localhost:3001/
 
+------------------------------------------------------------------------------
 
 # install axios on client
 ```sh
@@ -25,15 +26,20 @@ $ cd client
 $ npm i axios
 ```
 
-# install yarn
-```sh
-$ node -v # dependency
-$ sudo npm install -g yarn
-$ yarn --version
-```
-
 # install react-select
 ```sh
 $ cd client
 $ npm install --save react-select
+```
+
+# install recharts (https://recharts.org/en-US/examples)
+```sh
+$ cd client
+$ npm install recharts
+```
+
+# install victory (https://formidable.com/open-source/victory/docs/)
+```sh
+$ cd client
+$ npm install victory --save
 ```
